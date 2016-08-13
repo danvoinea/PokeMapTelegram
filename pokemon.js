@@ -138,10 +138,13 @@ server.listen(port, function(err) {
 
 app.post('/', function(req, res) {
     var id = req.body.message.pokemon_id;
-    var minutes = (req.body.message.time_until_hidden_ms / 1000).toFixed(0);
-    var text = pokemon[id].rarity + ': ' + pokemon[id].name + ' ' + minutes + ' seconds left';
+    var time=(req.body.message.time_until_hidden_ms/1000).toFixed(0);
+    var minutes = Math.floor(time / 60);
+    var seconds = time - minutes * 60;
+    var url='http://www.google.com/maps/place/'+req.body.message.latitude+','+req.body.message.longitude;
+    var text=pokemon[id].rarity + ': '+ pokemon[id].name+' '+minutes+':'+seconds+' seconds left. Find @ '+url;
 
-    console.log(pokemon[id].name, pokemon[id].rarity, minutes);
+    console.log(text);
 
     db.find({}, function(err, docs) {
 
@@ -166,11 +169,11 @@ app.post('/', function(req, res) {
                             text: text
                         });
 
-                        api.sendLocation({
-                            chat_id: data.id,
-                            latitude: req.body.message.latitude,
-                            longitude: req.body.message.longitude
-                        });
+                        // api.sendLocation({
+                        //   chat_id: data.id,
+                        //    latitude: req.body.message.latitude,
+                        //    longitude: req.body.message.longitude
+                        // }); 
 
                     }
 
