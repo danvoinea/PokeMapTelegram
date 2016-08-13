@@ -3,6 +3,7 @@
 This is a simple telegram bot that will notify you when Rare, Very Rare and Ultra Rare pokemon are in the are you're scanning.
 
 Setting up:
+
 1. npm install
 
 2. create a telegram bot and get an API key (place in .js file)
