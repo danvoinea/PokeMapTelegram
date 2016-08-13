@@ -14,3 +14,6 @@ Setting up:
 4. run with node pokemon
 (use forever if you want to keep it running permanently).
 
+
+
+NOTES: pokemon.json is from pogomap.
